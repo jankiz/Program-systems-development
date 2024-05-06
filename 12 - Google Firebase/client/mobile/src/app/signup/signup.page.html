@@ -1,0 +1,72 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Sign Up</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="ion-padding">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">signup</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+    <ion-item>
+      <ion-input label="Email" labelPlacement="floating" formControlName="email" type="email" placeholder="Email"
+        required [ngClass]="{'invalid-input': signupForm.get('email')?.errors}"></ion-input>
+    </ion-item>
+    <ion-text>
+      <div
+        *ngIf="signupForm.get('email')?.invalid && (signupForm.get('email')?.dirty || signupForm.get('email')?.touched)">
+        <p *ngIf="signupForm.get('email')?.errors && signupForm.get('email')?.errors!['required']">Email is required.
+        </p>
+        <p *ngIf="signupForm.get('email')?.errors && signupForm.get('email')?.errors!['email']">Please enter a valid
+          email.</p>
+      </div>
+    </ion-text>
+    <ion-item>
+      <ion-input label="Name" labelPlacement="floating" formControlName="name" type="text" placeholder="Name"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input label="Address" labelPlacement="floating" formControlName="address" type="text" placeholder="Address"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input label="Nickname" labelPlacement="floating" formControlName="nickname" type="text" placeholder="Nickname"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input label="Password" labelPlacement="floating" formControlName="password" type="password" placeholder="Password" required
+        [ngClass]="{'invalid-input': signupForm.get('password')?.errors}"></ion-input>
+      <ion-text>
+        <div
+          *ngIf="signupForm.get('password')?.invalid && (signupForm.get('password')?.dirty || signupForm.get('password')?.touched)">
+          <p *ngIf="signupForm.get('password')?.errors && signupForm.get('password')?.errors!['required']">Password is
+            required.</p>
+          <p *ngIf="signupForm.get('password')?.errors && signupForm.get('password')?.errors!['minlength']">Password
+            must
+            be
+            at least 6 characters.</p>
+        </div>
+      </ion-text>
+    </ion-item>
+    <ion-item>
+      <ion-input label="Confirm password" labelPlacement="floating" formControlName="confirmPassword" type="password" placeholder="Confirm password" required
+        [ngClass]="{'invalid-input': signupForm.get('confirmPassword')?.errors}"></ion-input>
+      <ion-text>
+        <div
+          *ngIf="signupForm.get('confirmPassword')?.invalid && (signupForm.get('confirmPassword')?.dirty || signupForm.get('confirmPassword')?.touched)">
+          <p
+            *ngIf="signupForm.get('confirmPassword')?.errors && signupForm.get('confirmPassword')?.errors!['required']">
+            Confirming password is required.</p>
+          <p
+            *ngIf="signupForm.get('confirmPassword')?.errors && signupForm.get('confirmPassword')?.errors!['mustMatch']">
+            Passwords must match.</p>
+        </div>
+      </ion-text>
+    </ion-item>
+    <ion-button expand="block" type="submit">Sign Up</ion-button>
+    <ion-button expand="block" type="reset" color="secondary" (click)="goBack()">Back</ion-button>
+  </form>
+</ion-content>

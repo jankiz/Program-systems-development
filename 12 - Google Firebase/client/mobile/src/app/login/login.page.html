@@ -1,0 +1,31 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Login</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="ion-padding">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Login</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <form (ngSubmit)="login()">
+    <ion-item>
+      <ion-input label="Email" labelPlacement="floating" [(ngModel)]="email" name="email" type="email" placeholder="Email" required></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input label="Password" labelPlacement="floating" [(ngModel)]="password" name="password" type="password" placeholder="Password" required></ion-input>
+    </ion-item>
+
+    <ion-button expand="block" type="submit">Login</ion-button>
+    <ion-button expand="block" type="button" color="secondary" (click)="navigate('/signup')">Sign Up</ion-button>
+    <ion-text *ngIf="errorMessage">
+      <p>{{errorMessage}}</p>
+    </ion-text>
+    <ion-spinner *ngIf="isLoading"></ion-spinner>
+  </form>
+</ion-content>
